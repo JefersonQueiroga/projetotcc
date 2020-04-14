@@ -1,17 +1,97 @@
 {% extends 'base_site.html' %}
 {% block content %}
   <div class="card">
-      <div class="card-header"><h3>Cadastro de Trabalho</h3></div>
-        <div class="card-body">
-            <form method="POST" class="forms-sample" action="{% url 'cadastro_trabalho' %}">{% csrf_token %}
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Cadastro de Trabalho<small>different form elements</small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+              <br />
+              <form id="demo-form2" method="POST"  action="."  data-parsley-validate class="form-horizontal form-label-left">
+
+                  {% csrf_token %}
+                   {% if form.errors %}
+                     {% for field in form %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-danger">
+                                    <strong>{{ error|escape }}</strong>
+                                </div>
+                            {% endfor %}
+                      {% endfor %}
+                    {% endif %}
+
                 <div class="form-group">
-                     <label for="inputDate">Nome:</label>
-                    {{ form.titulo }}
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="titulo">Título<span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                       {{ form.titulo }}
+                  </div>
                 </div>
 
-                <button type="submit" class="save btn btn-default">Salvar</button>
-            </form>
+                  <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.descricao.id_for_label }}">Descrição:<span class="required">*</span>
+                  </label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                       {{ form.descricao }}
+                  </div>
+                   </div>
+
+                   <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.curso.id_for_label }}">Curso:<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                           {{ form.curso }}
+                      </div>
+                   </div>
+
+                  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.categoria.id_for_label }}">Categoria<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                           {{ form.categoria }}
+                      </div>
+                   </div>
+
+                  <div class="form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.professores.id_for_label }}">
+                        Professor(es):<span class="required">*</span>
+                      </label>
+                      <div class="col-md-6 col-sm-6 col-xs-12">
+                           {{ form.professores }}
+                      </div>
+                   </div>
+
+
+
+                <div class="form-group">
+                  <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12" for="{{ form.ano.id_for_label }}">Ano:</label>
+                  <div class="col-md-4 col-sm-2 col-xs-2">
+                    {{ form.ano }}
+                  </div>
+                </div>
+
+
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                  <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                    <button class="btn btn-primary" type="button">Cancel</button>
+  		  <button class="btn btn-primary" type="reset">Reset</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
+
+
+
   </div>
 </div>
 {% endblock content %}

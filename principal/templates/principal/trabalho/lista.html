@@ -1,0 +1,57 @@
+{% extends 'base_site.html' %}
+{% block content %}
+  <div class="card">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Listagem de Trabalhos<small>different form elements</small></h2>
+
+              <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <div class="card">
+            <div class="card-header row">
+
+                        <div class="card-body">
+                            <table id="advanced_table" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Título</th>
+                                        <th>Descrição</th>
+                                        <th style="width:20%"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    {% for trabalho in trabalhos %}
+                                       <tr>
+                                            <td>{{trabalho.titulo}} </td>
+                                            <td>{{trabalho.descricao }} - {{trabalho.date |date:"M d, Y"  }}</td>
+                                           <td style="display:flex;   justify-content: space-evenly;">
+                                                <a href="/"  class="btn btn-danger">Remover</a>
+                                                <a href="{% url 'editar_trabalho' trabalho.id %}" class="btn btn-default">Editar</a>
+                                           </td>
+                                      </tr>
+                                    {% empty %}
+                                        <li>No articles yet.</li>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+              <h2></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  </div>
+</div>
+{% endblock content %}
